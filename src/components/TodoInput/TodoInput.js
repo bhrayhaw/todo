@@ -26,19 +26,13 @@ const TodoInput = (props) => {
 
     return (
         <form onSubmit={SubmitFormHandler}>
-            <div className="sub-div">
-                <p
-                    className="sub-div__text"
-                    style={{ color: !isValid ? "red" : "black" }}
-                >
-                    Todo List
-                </p>
+            <div className={`sub-div ${!isValid? 'invalid':''}`}>
+                <p className="sub-div__text">Todo List</p>
                 <div className="input_div">
                     <input
                         type="text"
                         value={enteredText}
                         onChange={enteredTextHandler}
-                        style={{ borderColor: !isValid ? "red" : "#ccc" }}
                     />
                 </div>
                 <Button type="submit">Add Task</Button>

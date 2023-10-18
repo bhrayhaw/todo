@@ -24,3 +24,12 @@
     /* border-style: none; */
     border: 1px solid #ccc;
 }
+
+.sub-div.invalid input{
+    border-color: red;
+    background-color: #fc5454;
+}
+
+.sub-div.invalid p{
+    color: #fc5454;
+}
