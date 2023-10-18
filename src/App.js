@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import TodoList from "./components/TodoList/TodoList";
+import TodoInput from "./components/TodoInput/TodoInput";
+import { useState } from "react";
+import "./App.css";
+
+const TodoLists = [
+    { id: "1", text: "Do your exercise!" },
+    { id: "2", text: "This is a todo list" },
+    { id: "3", text: "This is a todo list" },
+];
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [todo, setTodo] = useState(TodoLists);
+    const addTodoHandler = (todo) => {
+        setTodo((prevTasks) => {
+            const updatedTasks = [...prevTasks];
+            updatedTasks.unshift({ text: todo, id: Math.random().toString() });
+            return updatedTasks;
+        });
+    };
+
+    const deleteItemHandler = (todoId) => {
+        setTodo((prevTasks) => {
+            const updatedTasks = prevTasks.filter((task) => task.id !== todoId);
+            return updatedTasks;
+        });
+    };
+
+    let content = <p style={{textAlign: 'center', fontSize: '20px', fontWeight: '600'}}>No Tasks found. Add Task</p>;
+    
+    if(todo.length > 0){
+      content = <TodoList todoList={todo} onDeleteItem={deleteItemHandler} />;
+    }
+
+    return (
+        <div className="App">
+            <TodoInput addTodo={addTodoHandler} />
+            {content}
+        </div>
+    );
 }
 
 export default App;
