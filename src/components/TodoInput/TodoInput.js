@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../TodoButton/Button";
-import "./TodoInput.css";
+import styles from "./TodoInput.module.css";
 
 const TodoInput = (props) => {
     const [enteredText, setEnteredText] = useState("");
@@ -26,7 +26,7 @@ const TodoInput = (props) => {
 
     return (
         <form onSubmit={SubmitFormHandler}>
-            <div className={`sub-div ${!isValid? 'invalid':''}`}>
+            <div className={`${styles["sub-div"]} ${!isValid && styles.invalid}`}>
                 <p className="sub-div__text">Todo List</p>
                 <div className="input_div">
                     <input
